@@ -1,15 +1,18 @@
 import useSWR from 'swr'
 
-import { getAllCharacters, UrlPaths } from '@/services/starWarsApi'
+import { getPaginatedCharacters, UrlPaths } from '@/services/starWarsApi'
 
-export function useStarWarsData() {
-  const { data: allCharacters, isLoading: isAllCharactersLoading } = useSWR(
-    UrlPaths.ALL_CHARACTERS,
-    getAllCharacters
+export function useStarWarsData(pageIndex: number) {
+  const {
+    data: paginatedCharactersData,
+    isLoading: isPaginatedCharactersDataLoading,
+  } = useSWR([UrlPaths.ALL_CHARACTERS, pageIndex], () =>
+    getPaginatedCharacters(pageIndex)
   )
 
   return {
-    allCharacters: allCharacters || [],
-    isAllCharactersLoading,
+    charactersList: paginatedCharactersData?.results || [],
+    charactersData: paginatedCharactersData,
+    isCharactersDataLoading: isPaginatedCharactersDataLoading,
   }
 }

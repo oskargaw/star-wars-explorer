@@ -1,4 +1,4 @@
-export type StarWarsCharacter = {
+type StarWarsCharacter = {
   name: string
   birth_year: string
   eye_color: string

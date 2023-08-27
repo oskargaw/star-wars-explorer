@@ -3,7 +3,9 @@ import Head from 'next/head'
 
 import '@/styles/globals.css'
 
-export default function App({ Component, pageProps }: AppProps) {
+import { ReactElement } from 'react'
+
+export default function App({ Component, pageProps }: AppProps): ReactElement {
   return (
     <>
       <Head>
