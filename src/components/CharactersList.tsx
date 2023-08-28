@@ -1,7 +1,10 @@
-import React, { ReactElement } from 'react'
+import { ReactElement } from 'react'
 
 import { useStarWarsData } from '@/hooks/useStarWarsData'
 import { isArrayEmpty } from '@/utils/array'
+
+import { CharacterCard } from './CharacterCard'
+import Container from './Container'
 
 type Props = {
   pageIndex: number
@@ -12,17 +15,20 @@ export function CharactersList({ pageIndex }: Props): ReactElement {
   const { charactersList } = useStarWarsData(pageIndex)
 
   return (
-    <div>
-      {isArrayEmpty(charactersList)
-        ? 'No characters found'
-        : charactersList.map(({ name, birth_year, height, created }) => (
-            <React.Fragment key={name}>
-              <div>Name: {name}</div>
-              <div>Birth year: {birth_year}</div>
-              <div>Height: {height}</div>
-              <div>Created at: {created}</div>
-            </React.Fragment>
-          ))}
-    </div>
+    <Container>
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
+        {isArrayEmpty(charactersList)
+          ? 'No characters found'
+          : charactersList.map(({ name, birth_year, height, created }) => (
+              <CharacterCard
+                key={name}
+                name={name}
+                birthYear={birth_year}
+                height={height}
+                createdAt={created}
+              />
+            ))}
+      </div>
+    </Container>
   )
 }
