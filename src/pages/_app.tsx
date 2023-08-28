@@ -4,6 +4,8 @@ import Head from 'next/head'
 
 import '@/styles/globals.css'
 
+import { Particles } from '@/components/Particles'
+
 export default function App({ Component, pageProps }: AppProps): ReactElement {
   return (
     <>
@@ -15,6 +17,8 @@ export default function App({ Component, pageProps }: AppProps): ReactElement {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Particles />
 
       <div className="p-24">
         <Component {...pageProps} />

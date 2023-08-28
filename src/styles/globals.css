@@ -9,18 +9,7 @@ body {
 }
 
 body {
-  background: -webkit-linear-gradient(
-    20deg,
-    #bb674d,
-    #794b4b,
-    #281d2b
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    20deg,
-    #bb674d,
-    #794b4b,
-    #281d2b
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #000;
 }
 
 @layer base {

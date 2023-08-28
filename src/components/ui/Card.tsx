@@ -7,7 +7,7 @@ const Card = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, children, ...props }, ref) => (
   <div ref={ref} className="group relative" {...props}>
-    <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-red-600 to-blue-600 opacity-80 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-500" />
+    <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-red-600 to-blue-600 opacity-80 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200" />
     <div className="relative flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-black to-black/50 p-2 leading-none">
       {children}
     </div>
@@ -56,7 +56,7 @@ const CardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn('flex flex-col gap-6 p-6 pt-0 text-white', className)}
+    className={cn('flex flex-col gap-10 p-6 pt-10 text-white', className)}
     {...props}
   />
 ))
