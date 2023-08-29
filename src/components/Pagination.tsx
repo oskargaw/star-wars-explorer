@@ -3,19 +3,25 @@ import { useRouter } from 'next/router'
 
 import { useStarWarsData } from '@/hooks/useStarWarsData'
 import { cn } from '@/lib/tailwindMerge'
+import { isArrayEmpty } from '@/utils/array'
 
 import { Button } from './ui/Button'
 
 type Props = {
+  searchTerm: string
   currentPageIndex: number
 }
 
 const RESULTS_PER_PAGE = 10
 
-export function Pagination({ currentPageIndex }: Props): ReactElement {
+export function Pagination({
+  searchTerm,
+  currentPageIndex,
+}: Props): ReactElement | null {
   // Hooks
   const router = useRouter()
-  const { charactersData } = useStarWarsData(currentPageIndex)
+  const { charactersData, charactersList, isCharactersDataLoading } =
+    useStarWarsData(searchTerm, currentPageIndex)
 
   // Handlers
   function handlePreviousButtonClick() {
@@ -30,14 +36,19 @@ export function Pagination({ currentPageIndex }: Props): ReactElement {
     router.push({ query: { ...router.query, page: pageIndex + 1 } })
   }
 
-  // Constants
+  // Variables
   const totalPagesNumber = useMemo(
     () => Math.ceil((charactersData?.count ?? 0) / RESULTS_PER_PAGE),
     [charactersData?.count]
   )
 
+  const shouldDisplayPagination = useMemo(
+    () => !isCharactersDataLoading && !isArrayEmpty(charactersList),
+    [charactersList, isCharactersDataLoading]
+  )
+
   // Helpers
-  const shouldDisplayPageNumber = useCallback(
+  const displayPageNumber = useCallback(
     (displayedPageIndex: number) => {
       if (
         displayedPageIndex === 1 ||
@@ -56,7 +67,7 @@ export function Pagination({ currentPageIndex }: Props): ReactElement {
     [currentPageIndex, totalPagesNumber]
   )
 
-  const shouldDisplayThreeDots = useCallback(
+  const displayThreeDots = useCallback(
     (displayedPageIndex: number) => {
       if (
         (displayedPageIndex === 2 && currentPageIndex > 3) ||
@@ -72,7 +83,7 @@ export function Pagination({ currentPageIndex }: Props): ReactElement {
   )
 
   // Components
-  return (
+  return shouldDisplayPagination ? (
     <div className="flex gap-5 pt-20">
       <Button
         variant="secondary"
@@ -83,7 +94,7 @@ export function Pagination({ currentPageIndex }: Props): ReactElement {
       </Button>
 
       {[...Array(totalPagesNumber)].map((_page, pageIndex) => {
-        if (shouldDisplayPageNumber(pageIndex + 1)) {
+        if (displayPageNumber(pageIndex + 1)) {
           return (
             <Button
               key={pageIndex}
@@ -98,7 +109,7 @@ export function Pagination({ currentPageIndex }: Props): ReactElement {
           )
         }
 
-        if (shouldDisplayThreeDots(pageIndex + 1)) {
+        if (displayThreeDots(pageIndex + 1)) {
           return (
             <Button
               key={pageIndex}
@@ -120,5 +131,5 @@ export function Pagination({ currentPageIndex }: Props): ReactElement {
         Next
       </Button>
     </div>
-  )
+  ) : null
 }

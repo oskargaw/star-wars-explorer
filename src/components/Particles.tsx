@@ -9,7 +9,7 @@ export function Particles(): ReactElement {
     await loadStarsPreset(engine)
   }, [])
 
-  // Constants
+  // Variables
   const options: RecursivePartial<IOptions> = {
     preset: 'stars',
     particles: {

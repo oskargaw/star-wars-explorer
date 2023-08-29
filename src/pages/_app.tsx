@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps): ReactElement {
 
       <Particles />
 
-      <div className="p-16">
+      <div className="px-20 py-16">
         <Component {...pageProps} />
       </div>
     </>
