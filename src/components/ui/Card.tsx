@@ -34,13 +34,28 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      'text-2xl font-semibold leading-none tracking-tight text-white',
+      'text-3xl font-bold leading-none tracking-widest text-white',
       className
     )}
     {...props}
   />
 ))
 CardTitle.displayName = 'CardTitle'
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      'flex flex-col gap-10 p-6 pt-10 tracking-widest text-white',
+      className
+    )}
+    {...props}
+  />
+))
+CardContent.displayName = 'CardContent'
 
 const CardRow = React.forwardRef<
   HTMLDivElement,
@@ -50,23 +65,11 @@ const CardRow = React.forwardRef<
 ))
 CardRow.displayName = 'CardRow'
 
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn('flex flex-col gap-10 p-6 pt-10 text-white', className)}
-    {...props}
-  />
-))
-CardContent.displayName = 'CardContent'
-
 const CardLabel = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('flex justify-between', className)} {...props} />
+  <div ref={ref} className={cn(className)} {...props} />
 ))
 CardLabel.displayName = 'CardLabel'
 
@@ -74,7 +77,7 @@ const CardValue = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('flex justify-between', className)} {...props} />
+  <div ref={ref} className={cn(className)} {...props} />
 ))
 CardValue.displayName = 'CardValue'
 

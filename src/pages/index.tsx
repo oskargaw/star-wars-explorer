@@ -27,12 +27,17 @@ export default function Home(): ReactElement {
     router.push({ query: { ...router.query, page: pageIndex + 1 } })
   }
 
+  // Components
   if (isCharactersDataLoading) return <div>Loading...</div>
 
   return (
     <main
       className={`flex flex-col items-center justify-between ${orbitron.className}`}
     >
+      <h2 className="font-star-jedi-hollow z-30 pb-20 text-7xl text-yellow-300">
+        Star Wars Explorer
+      </h2>
+
       <CharactersList pageIndex={pageIndex} />
 
       <div className="hidden">

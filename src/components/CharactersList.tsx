@@ -14,9 +14,10 @@ export function CharactersList({ pageIndex }: Props): ReactElement {
   // Hooks
   const { charactersList } = useStarWarsData(pageIndex)
 
+  // Components
   return (
     <Container>
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-12 sm:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
         {isArrayEmpty(charactersList)
           ? 'No characters found'
           : charactersList.map(({ name, birth_year, height, created }) => (

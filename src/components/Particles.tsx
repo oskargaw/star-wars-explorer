@@ -25,6 +25,7 @@ export function Particles(): ReactElement {
     },
   }
 
+  // Components
   return (
     <ParticlesImported
       id="tsparticles"
