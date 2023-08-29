@@ -7,12 +7,12 @@ import { CharacterCard } from './CharacterCard'
 import Container from './Container'
 
 type Props = {
-  pageIndex: number
+  currentPageIndex: number
 }
 
-export function CharactersList({ pageIndex }: Props): ReactElement {
+export function CharactersList({ currentPageIndex }: Props): ReactElement {
   // Hooks
-  const { charactersList } = useStarWarsData(pageIndex)
+  const { charactersList } = useStarWarsData(currentPageIndex)
 
   // Components
   return (

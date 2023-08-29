@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useStarWarsData } from '@/hooks/useStarWarsData'
 
 import { CharactersList } from '@/components/CharactersList'
+import { Pagination } from '@/components/Pagination'
 
 const orbitron = Orbitron({ subsets: ['latin'] })
 
@@ -13,19 +14,10 @@ export default function Home(): ReactElement {
   const router = useRouter()
 
   // Constants
-  const pageIndex = parseInt(router.query.page?.toString() || '1')
+  const currentPageIndex = parseInt(router.query.page?.toString() || '1')
 
   // Hooks
-  const { charactersData, isCharactersDataLoading } = useStarWarsData(pageIndex)
-
-  // Handlers
-  function handlePreviousButtonClick() {
-    router.push({ query: { ...router.query, page: pageIndex - 1 } })
-  }
-
-  function handleNextButtonClick() {
-    router.push({ query: { ...router.query, page: pageIndex + 1 } })
-  }
+  const { isCharactersDataLoading } = useStarWarsData(currentPageIndex)
 
   // Components
   if (isCharactersDataLoading) return <div>Loading...</div>
@@ -38,19 +30,14 @@ export default function Home(): ReactElement {
         Star Wars Explorer
       </h2>
 
-      <CharactersList pageIndex={pageIndex} />
+      <CharactersList currentPageIndex={currentPageIndex} />
 
+      {/* Prefetch data for the next page so it's available immediately after opening it */}
       <div className="hidden">
-        <CharactersList pageIndex={pageIndex + 1} />
+        <CharactersList currentPageIndex={currentPageIndex + 1} />
       </div>
 
-      {charactersData?.previous && (
-        <button onClick={handlePreviousButtonClick}>Prev</button>
-      )}
-
-      {charactersData?.next && (
-        <button onClick={handleNextButtonClick}>Next</button>
-      )}
+      <Pagination currentPageIndex={currentPageIndex} />
     </main>
   )
 }

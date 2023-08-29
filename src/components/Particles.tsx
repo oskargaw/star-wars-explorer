@@ -4,7 +4,7 @@ import type { Engine, IOptions, RecursivePartial } from 'tsparticles-engine'
 import { loadStarsPreset } from 'tsparticles-preset-stars'
 
 export function Particles(): ReactElement {
-  // Functions
+  // Helpers
   const particlesInit = useCallback(async (engine: Engine): Promise<void> => {
     await loadStarsPreset(engine)
   }, [])
