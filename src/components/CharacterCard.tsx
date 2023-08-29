@@ -1,5 +1,7 @@
 import { ReactElement } from 'react'
 
+import { formatDate } from '@/utils/date'
+
 import {
   Card,
   CardContent,
@@ -42,7 +44,7 @@ export function CharacterCard({
 
         <CardRow>
           <CardLabel>Created at:</CardLabel>
-          <CardValue>{createdAt}</CardValue>
+          <CardValue>{formatDate(createdAt)}</CardValue>
         </CardRow>
       </CardContent>
     </Card>
