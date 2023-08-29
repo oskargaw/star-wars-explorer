@@ -5,7 +5,7 @@ import {
   UrlPaths,
 } from '@/services/starWarsApi'
 
-export function useStarWarsData(searchTerm: string, pageIndex: number) {
+export function useCharactersList(searchTerm: string, pageIndex: number) {
   const {
     data: paginatedSearchedCharactersData,
     isLoading: isPaginatedSearchedCharactersDataLoading,

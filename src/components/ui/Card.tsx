@@ -42,6 +42,21 @@ const CardTitle = React.forwardRef<
 ))
 CardTitle.displayName = 'CardTitle'
 
+const CardSubtitle = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h6
+    ref={ref}
+    className={cn(
+      'text-center text-xl font-bold leading-none tracking-widest text-white',
+      className
+    )}
+    {...props}
+  />
+))
+CardSubtitle.displayName = 'CardSubtitle'
+
 const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -87,6 +102,7 @@ export {
   CardHeader,
   CardLabel,
   CardRow,
+  CardSubtitle,
   CardTitle,
   CardValue,
 }

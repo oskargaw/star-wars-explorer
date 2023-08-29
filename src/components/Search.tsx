@@ -7,7 +7,7 @@ import {
 } from 'react'
 import { useDebounce } from '@uidotdev/usehooks'
 
-import { Input } from './ui/input'
+import { Input } from './ui/Input'
 
 type Props = {
   onChangeSearchTerm(term: string): void
@@ -36,7 +36,7 @@ export function Search({ onChangeSearchTerm, ...props }: Props): ReactElement {
 
   // Components
   return (
-    <div className="z-30 mb-12 w-[30%]">
+    <div className="z-30 mb-14 w-[30%]">
       <Input
         name="search"
         placeholder="Search characters"

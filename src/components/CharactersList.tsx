@@ -1,10 +1,9 @@
-import { ReactElement, useMemo } from 'react'
+import { ReactElement, useCallback, useMemo } from 'react'
 
-import { useStarWarsData } from '@/hooks/useStarWarsData'
+import { useCharactersList } from '@/hooks/useCharactersList'
 import { isArrayEmpty } from '@/utils/array'
 
 import { CharacterCard } from './CharacterCard'
-import Container from './Container'
 
 type Props = {
   searchTerm: string
@@ -16,7 +15,7 @@ export function CharactersList({
   currentPageIndex,
 }: Props): ReactElement {
   // Hooks
-  const { charactersList, isCharactersDataLoading } = useStarWarsData(
+  const { charactersList, isCharactersDataLoading } = useCharactersList(
     searchTerm,
     currentPageIndex
   )
@@ -27,18 +26,27 @@ export function CharactersList({
     [charactersList, isCharactersDataLoading]
   )
 
+  // Helpers
+  const extractIdFromUrl = useCallback((url: string) => {
+    const urlParts = url.split('/')
+    const id = urlParts[urlParts.length - 2]
+
+    return id
+  }, [])
+
   // Components
   return (
-    <Container>
+    <div className="w-full">
       {isCharactersListEmpty ? (
         <div className="text-center text-xl tracking-wider text-white">
           No characters found
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">
-          {charactersList.map(({ name, birth_year, height, created }) => (
+          {charactersList.map(({ name, birth_year, height, created, url }) => (
             <CharacterCard
-              key={name}
+              key={extractIdFromUrl(url)}
+              id={extractIdFromUrl(url)}
               name={name}
               birthYear={birth_year}
               height={height}
@@ -47,6 +55,6 @@ export function CharactersList({
           ))}
         </div>
       )}
-    </Container>
+    </div>
   )
 }

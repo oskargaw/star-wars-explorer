@@ -1,14 +1,11 @@
 import { ReactElement, useCallback, useState } from 'react'
-import { Orbitron } from 'next/font/google'
 import { useRouter } from 'next/router'
 
-import { useStarWarsData } from '@/hooks/useStarWarsData'
+import { useCharactersList } from '@/hooks/useCharactersList'
 
 import { CharactersList } from '@/components/CharactersList'
 import { Pagination } from '@/components/Pagination'
 import { Search } from '@/components/Search'
-
-const orbitron = Orbitron({ subsets: ['latin'] })
 
 export default function Home(): ReactElement {
   // State
@@ -21,7 +18,7 @@ export default function Home(): ReactElement {
   const currentPageIndex = parseInt(router.query.page?.toString() || '1')
 
   // Hooks
-  const { isCharactersDataLoading } = useStarWarsData(
+  const { isCharactersDataLoading } = useCharactersList(
     searchTerm,
     currentPageIndex
   )
@@ -40,9 +37,7 @@ export default function Home(): ReactElement {
 
   // Components
   return (
-    <main
-      className={`flex flex-col items-center justify-between ${orbitron.className}`}
-    >
+    <div className={'flex flex-col items-center justify-between'}>
       <h2 className="font-star-jedi-hollow z-30 pb-20 text-7xl text-yellow-300">
         Star Wars Explorer
       </h2>
@@ -67,6 +62,6 @@ export default function Home(): ReactElement {
       </div>
 
       <Pagination searchTerm={searchTerm} currentPageIndex={currentPageIndex} />
-    </main>
+    </div>
   )
 }

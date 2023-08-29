@@ -1,7 +1,7 @@
 import { ReactElement, useCallback, useMemo } from 'react'
 import { useRouter } from 'next/router'
 
-import { useStarWarsData } from '@/hooks/useStarWarsData'
+import { useCharactersList } from '@/hooks/useCharactersList'
 import { cn } from '@/lib/tailwindMerge'
 import { isArrayEmpty } from '@/utils/array'
 
@@ -21,7 +21,7 @@ export function Pagination({
   // Hooks
   const router = useRouter()
   const { charactersData, charactersList, isCharactersDataLoading } =
-    useStarWarsData(searchTerm, currentPageIndex)
+    useCharactersList(searchTerm, currentPageIndex)
 
   // Handlers
   function handlePreviousButtonClick() {

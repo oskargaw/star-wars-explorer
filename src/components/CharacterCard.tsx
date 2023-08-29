@@ -1,4 +1,5 @@
 import { ReactElement } from 'react'
+import Link from 'next/link'
 
 import { formatDate } from '@/utils/date'
 
@@ -13,6 +14,7 @@ import {
 } from './ui/Card'
 
 type Props = {
+  id: string
   name: string
   birthYear: string
   height: string
@@ -20,33 +22,36 @@ type Props = {
 }
 
 export function CharacterCard({
+  id,
   name,
   birthYear,
   height,
   createdAt,
 }: Props): ReactElement {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{name}</CardTitle>
-      </CardHeader>
+    <Link href={`/${id}`}>
+      <Card>
+        <CardHeader>
+          <CardTitle>{name}</CardTitle>
+        </CardHeader>
 
-      <CardContent>
-        <CardRow>
-          <CardLabel>Born:</CardLabel>
-          <CardValue>{birthYear}</CardValue>
-        </CardRow>
+        <CardContent>
+          <CardRow>
+            <CardLabel>Born:</CardLabel>
+            <CardValue>{birthYear}</CardValue>
+          </CardRow>
 
-        <CardRow>
-          <CardLabel>Height:</CardLabel>
-          <CardValue>{height}</CardValue>
-        </CardRow>
+          <CardRow>
+            <CardLabel>Height:</CardLabel>
+            <CardValue>{height}</CardValue>
+          </CardRow>
 
-        <CardRow>
-          <CardLabel>Created at:</CardLabel>
-          <CardValue>{formatDate(createdAt)}</CardValue>
-        </CardRow>
-      </CardContent>
-    </Card>
+          <CardRow>
+            <CardLabel>Created at:</CardLabel>
+            <CardValue>{formatDate(createdAt)}</CardValue>
+          </CardRow>
+        </CardContent>
+      </Card>
+    </Link>
   )
 }
