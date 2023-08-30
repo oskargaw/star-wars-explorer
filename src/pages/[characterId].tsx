@@ -20,7 +20,7 @@ export default function CharacterDetailsPage(): ReactElement {
   return (
     <div className="flex flex-col items-center">
       {isCharacterLoading ? (
-        <Skeleton className="aspect-square w-full rounded-lg" />
+        <Skeleton className="aspect-square w-full rounded-lg xl:w-1/2" />
       ) : (
         <CharacterDetailsCard characterId={characterId} />
       )}
