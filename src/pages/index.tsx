@@ -41,7 +41,7 @@ export default function Home(): ReactElement {
   return (
     <FadeInComponent>
       <div className="flex flex-col items-center justify-between">
-        <h2 className="font-star-jedi-hollow z-30 pb-20 text-7xl text-yellow-300">
+        <h2 className="font-star-jedi-hollow z-30 pb-7 text-center text-5xl text-yellow-300 sm:pb-12 sm:text-7xl lg:pb-20">
           Star Wars Explorer
         </h2>
 

@@ -6,9 +6,9 @@ const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, children, ...props }, ref) => (
-  <div ref={ref} className="group relative" {...props}>
+  <div ref={ref} className="group relative h-full" {...props}>
     <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-red-600 to-blue-600 opacity-80 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200" />
-    <div className="relative flex flex-col items-center justify-center rounded-lg bg-gradient-to-t from-black to-black/50 p-2 leading-none">
+    <div className="relative flex h-full flex-col items-center justify-center rounded-lg bg-gradient-to-t from-black to-black/50 p-2 leading-none">
       {children}
     </div>
   </div>
@@ -34,7 +34,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      'text-3xl font-bold leading-none tracking-widest text-white',
+      'text-center text-2xl font-bold leading-none tracking-widest text-white sm:text-3xl',
       className
     )}
     {...props}
@@ -64,7 +64,7 @@ const CardContent = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      'flex w-full flex-col gap-10 p-6 pt-10 tracking-widest text-white',
+      'xs:text-base flex w-full flex-col gap-6 p-6 pt-5 text-sm tracking-widest text-white sm:gap-10 sm:pt-10 sm:text-lg',
       className
     )}
     {...props}
@@ -92,7 +92,7 @@ const CardValue = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn(className)} {...props} />
+  <div ref={ref} className={cn('text-right', className)} {...props} />
 ))
 CardValue.displayName = 'CardValue'
 

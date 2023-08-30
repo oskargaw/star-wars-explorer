@@ -84,13 +84,15 @@ export function Pagination({
 
   // Components
   return shouldDisplayPagination ? (
-    <div className="flex gap-5 pt-20">
+    <div className="xs:gap-3 flex gap-1.5 pt-12 sm:gap-3 sm:pt-20 md:gap-5">
       <Button
         variant="secondary"
+        className="xs:h-10 xs:px-4 h-8 rounded-lg px-2.5"
         disabled={!charactersData?.previous}
         onClick={handlePreviousButtonClick}
       >
-        Prev
+        <span className="hidden sm:inline-block">Prev</span>
+        <span className="sm:hidden">{'<'}</span>
       </Button>
 
       {[...Array(totalPagesNumber)].map((_page, pageIndex) => {
@@ -98,7 +100,7 @@ export function Pagination({
           return (
             <Button
               key={pageIndex}
-              className={cn({
+              className={cn('xs:px-4 xs:h-10 h-8 p-2.5', {
                 'bg-yellow-300': currentPageIndex === pageIndex + 1,
               })}
               variant="secondary"
@@ -113,7 +115,7 @@ export function Pagination({
           return (
             <Button
               key={pageIndex}
-              className="disabled:opacity-100"
+              className="xs:px-4 xs:h-10 h-8 p-2 disabled:opacity-100"
               variant="secondary"
               disabled={true}
             >
@@ -125,10 +127,12 @@ export function Pagination({
 
       <Button
         variant="secondary"
+        className="xs:h-10 xs:px-4 h-8 rounded-lg px-2.5"
         disabled={!charactersData?.next}
         onClick={handleNextButtonClick}
       >
-        Next
+        <span className="hidden sm:inline-block">Next</span>
+        <span className="sm:hidden">{'>'}</span>
       </Button>
     </div>
   ) : null

@@ -36,11 +36,11 @@ export function Search({ onChangeSearchTerm, ...props }: Props): ReactElement {
 
   // Components
   return (
-    <div className="z-30 mb-14 w-[30%]">
+    <div className="z-30 mb-10 w-full sm:mb-14 sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[30%]">
       <Input
         name="search"
         placeholder="Search characters"
-        className="rounded-full p-7 tracking-wider"
+        className="xs:p-7 rounded-full p-5 tracking-wider"
         onChange={handleChange}
         {...props}
       />

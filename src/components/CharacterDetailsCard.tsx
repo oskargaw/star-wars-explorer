@@ -34,7 +34,7 @@ export function CharacterDetailsCard({ characterId }: Props): ReactElement {
   } = character?.generalDetails || {}
 
   return (
-    <div className="w-1/2">
+    <div className="w-full xl:w-1/2">
       <FadeInComponent>
         <Card>
           <CardHeader>

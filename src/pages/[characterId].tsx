@@ -18,9 +18,9 @@ export default function CharacterDetailsPage(): ReactElement {
 
   // Components
   return (
-    <div className={'flex flex-col items-center justify-between'}>
+    <div className="flex flex-col items-center">
       {isCharacterLoading ? (
-        <Skeleton className="aspect-square w-1/2 rounded-lg" />
+        <Skeleton className="aspect-square w-full rounded-lg" />
       ) : (
         <CharacterDetailsCard characterId={characterId} />
       )}
