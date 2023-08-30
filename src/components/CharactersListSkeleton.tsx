@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import { Skeleton } from './ui/skeleton'
+import { Skeleton } from './ui/Skeleton'
 
 export function CharactersListSkeleton(): ReactElement {
   return (

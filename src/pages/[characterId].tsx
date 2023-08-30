@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import { useCharacterDetails } from '@/hooks/useCharacterDetails'
 
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/ui/Skeleton'
 import { CharacterDetailsCard } from '@/components/CharacterDetailsCard'
 
 export default function CharacterDetailsPage(): ReactElement {
