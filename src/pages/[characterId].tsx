@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import { useCharacterDetails } from '@/hooks/useCharacterDetails'
 
+import { Skeleton } from '@/components/ui/skeleton'
 import { CharacterDetailsCard } from '@/components/CharacterDetailsCard'
 
 export default function CharacterDetailsPage(): ReactElement {
@@ -19,7 +20,7 @@ export default function CharacterDetailsPage(): ReactElement {
   return (
     <div className={'flex flex-col items-center justify-between'}>
       {isCharacterLoading ? (
-        <div className="z-30 text-xl text-white">Loading...</div>
+        <Skeleton className="aspect-square w-1/2 rounded-lg" />
       ) : (
         <CharacterDetailsCard characterId={characterId} />
       )}

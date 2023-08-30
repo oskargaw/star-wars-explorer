@@ -6,6 +6,6 @@ type ContainerProps = {
 
 export function Container({ children }: ContainerProps): ReactElement {
   return (
-    <main className="z-30 mx-auto h-full w-full px-20 py-16">{children}</main>
+    <main className="z-30 mx-auto h-full w-full px-24 py-16">{children}</main>
   )
 }
