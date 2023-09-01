@@ -1,5 +1,3 @@
-import { AxiosError } from 'axios'
-
 import { axiosInstance } from '@/lib/axios'
 import type {
   StarWarsCharacter,
@@ -25,11 +23,7 @@ export async function getPaginatedSearchedCharacters(
 
     return response.data
   } catch (error) {
-    if (error instanceof AxiosError && error.response?.status === 404) {
-      return null
-    } else {
-      throw error
-    }
+    throw error
   }
 }
 
@@ -85,10 +79,6 @@ export async function getCharacterDetails(
       starships,
     }
   } catch (error) {
-    if (error instanceof AxiosError && error.response?.status === 404) {
-      return null
-    } else {
-      throw error
-    }
+    throw error
   }
 }

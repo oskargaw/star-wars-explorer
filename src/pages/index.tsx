@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { useCharactersList } from '@/hooks/useCharactersList'
 
 import { CharactersList } from '@/components/CharactersList'
-import { CharactersListSkeleton } from '@/components/CharactersListSkeleton'
 import { FadeInComponent } from '@/components/FadeInComponent'
 import { Pagination } from '@/components/Pagination'
 import { Search } from '@/components/Search'
@@ -20,7 +19,7 @@ export default function Home(): ReactElement {
   const currentPageIndex = parseInt(router.query.page?.toString() || '1')
 
   // Hooks
-  const { isCharactersDataLoading } = useCharactersList(
+  const { charactersDataError } = useCharactersList(
     searchTerm,
     currentPageIndex
   )
@@ -41,20 +40,18 @@ export default function Home(): ReactElement {
   return (
     <FadeInComponent>
       <div className="flex flex-col items-center justify-between">
-        <h2 className="font-star-jedi-hollow z-30 pb-7 text-center text-5xl text-yellow-300 sm:pb-12 sm:text-7xl lg:pb-20">
+        <h2 className="z-30 pb-7 text-center font-star-jedi-hollow text-5xl text-yellow-300 sm:pb-12 sm:text-7xl lg:pb-20">
           Star Wars Explorer
         </h2>
 
-        <Search onChangeSearchTerm={handleChangeSearchTerm} />
-
-        {isCharactersDataLoading ? (
-          <CharactersListSkeleton />
-        ) : (
-          <CharactersList
-            searchTerm={searchTerm}
-            currentPageIndex={currentPageIndex}
-          />
+        {charactersDataError ? null : (
+          <Search onChangeSearchTerm={handleChangeSearchTerm} />
         )}
+
+        <CharactersList
+          searchTerm={searchTerm}
+          currentPageIndex={currentPageIndex}
+        />
 
         {/* Prefetch data for the next page so it's available immediately after opening it */}
         <div className="hidden">

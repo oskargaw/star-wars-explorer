@@ -4,6 +4,7 @@ import { useCharacterDetails } from '@/hooks/useCharacterDetails'
 import { isArrayEmpty } from '@/utils/array'
 import { formatDate } from '@/utils/date'
 
+import { ErrorMessage } from './ErrorMessage'
 import { FadeInComponent } from './FadeInComponent'
 import {
   Card,
@@ -16,6 +17,7 @@ import {
   CardValue,
 } from './ui/Card'
 import { Separator } from './ui/Separator'
+import { Skeleton } from './ui/Skeleton'
 
 type Props = {
   characterId: string
@@ -23,7 +25,8 @@ type Props = {
 
 export function CharacterDetailsCard({ characterId }: Props): ReactElement {
   // Hooks
-  const { character } = useCharacterDetails(characterId)
+  const { character, characterError, isCharacterLoading } =
+    useCharacterDetails(characterId)
 
   // Destructuring
   const {
@@ -32,6 +35,12 @@ export function CharacterDetailsCard({ characterId }: Props): ReactElement {
     height = '',
     created = '',
   } = character?.generalDetails || {}
+
+  // Components
+  if (isCharacterLoading)
+    return <Skeleton className="aspect-square w-full rounded-lg xl:w-1/2" />
+
+  if (characterError) return <ErrorMessage />
 
   return (
     <div className="w-full xl:w-1/2">

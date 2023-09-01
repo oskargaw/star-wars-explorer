@@ -8,6 +8,7 @@ import {
 export function useCharactersList(searchTerm: string, pageIndex: number) {
   const {
     data: paginatedSearchedCharactersData,
+    error: paginatedSearchedCharactersDataError,
     isLoading: isPaginatedSearchedCharactersDataLoading,
   } = useSWR([UrlPaths.ALL_CHARACTERS, searchTerm, pageIndex], () =>
     getPaginatedSearchedCharacters(searchTerm, pageIndex)
@@ -16,6 +17,7 @@ export function useCharactersList(searchTerm: string, pageIndex: number) {
   return {
     charactersList: paginatedSearchedCharactersData?.results || [],
     charactersData: paginatedSearchedCharactersData,
+    charactersDataError: paginatedSearchedCharactersDataError,
     isCharactersDataLoading: isPaginatedSearchedCharactersDataLoading,
   }
 }

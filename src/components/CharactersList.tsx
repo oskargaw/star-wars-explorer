@@ -4,6 +4,8 @@ import { useCharactersList } from '@/hooks/useCharactersList'
 import { isArrayEmpty } from '@/utils/array'
 
 import { CharacterCard } from './CharacterCard'
+import { CharactersListSkeleton } from './CharactersListSkeleton'
+import { ErrorMessage } from './ErrorMessage'
 import { FadeInComponent } from './FadeInComponent'
 
 type Props = {
@@ -16,10 +18,8 @@ export function CharactersList({
   currentPageIndex,
 }: Props): ReactElement {
   // Hooks
-  const { charactersList, isCharactersDataLoading } = useCharactersList(
-    searchTerm,
-    currentPageIndex
-  )
+  const { charactersList, charactersDataError, isCharactersDataLoading } =
+    useCharactersList(searchTerm, currentPageIndex)
 
   // Variables
   const isCharactersListEmpty = useMemo(
@@ -36,6 +36,10 @@ export function CharactersList({
   }, [])
 
   // Components
+  if (isCharactersDataLoading) return <CharactersListSkeleton />
+
+  if (charactersDataError) return <ErrorMessage />
+
   return (
     <div className="w-full">
       <FadeInComponent>

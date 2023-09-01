@@ -64,7 +64,7 @@ const CardContent = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      'xs:text-base flex w-full flex-col gap-6 p-6 pt-5 text-sm tracking-widest text-white sm:gap-10 sm:pt-10 sm:text-lg',
+      'flex w-full flex-col gap-6 p-6 pt-5 text-sm tracking-widest text-white xs:text-base sm:gap-10 sm:pt-10 sm:text-lg',
       className
     )}
     {...props}
